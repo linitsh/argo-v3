@@ -61,4 +61,4 @@ infra_repo                          # Devops repo
 └── README.md
 ```
 
-Copyleft (c) by Denis Astahov.
+Copyleft (c) by LinitSH.

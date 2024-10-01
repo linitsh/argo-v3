@@ -1,0 +1,3 @@
+
+container:
+  image: docker.io/bokovets/kuber:v1.0

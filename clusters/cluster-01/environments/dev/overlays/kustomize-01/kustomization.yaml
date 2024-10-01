@@ -1,0 +1,33 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../../../../../apps/kustomize-01
+- 0-ns-app-01.yaml
+
+# metadata: namespace for all resources what be created here
+namespace: dev 
+
+images:
+  - name  : nginx
+    newTag: latest
+
+labels:
+# metadata: labels for all resources what be created here
+- includeSelectors: true
+  pairs:
+    env: dev
+
+patches: # merge witch previous base empty configmap
+- path: 3-cfg-app-01-patch.yaml
+
+# create one secret resource with base64 secret from sources like files or literals
+secretGenerator: 
+- name: secret        # metadata: name : secret-hash
+  envs:
+  - foo.env           # data: unpacked foo.env KEY=base64
+  files:
+  - longsecret.txt    # data: longsecret.txt | base64
+  literals:           # data: KEY=base64
+  - FRUIT=banana
+  - VEGETABLE=carrot

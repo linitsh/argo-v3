@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
+version: '3'
+tasks:
+  default   : task -a
+  show      : kubectl kustomize
+  build     : kubectl kustomize > ./result.yaml
+  build-helm: kubectl kustomize --enable-helm > result.ymal

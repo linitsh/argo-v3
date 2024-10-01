@@ -1,4 +1,16 @@
-
+---
 resources:
-  - dpl-kustomize-01.yaml
-  - svs-np-kustomize-01.yaml
+- 1-dpl-app-01.yaml
+- 2-svc-ci-app-01.yaml
+
+commonLabels:
+  app: frontend
+
+commonAnnotations:
+  app.annotation: base-annotation
+
+namePrefix: p-
+nameSuffix: -v1
+
+configMapGenerator:
+- name: config

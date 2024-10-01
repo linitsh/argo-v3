@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    path   : "clusters/current/envs/dev/applications"
+    path   : "clusters/cluster-01/environments/dev/applications"
     repoURL: "https://github.com/linitsh/argo-adv-test.git"
     targetRevision: HEAD
   destination:

@@ -1,26 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name     : myapp1
-  namespace: argocd
+  name      : dev-kustomize-01
+  namespace : argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  project    : default
   destination:
     name     : in-cluster
-    namespace: app1
+    namespace: &ns dev
   source:
-    path   : "HelmCharts/MyChart1"
-    repoURL: "https://github.com/linitsh/argo-adv-test.git"
+    path   : "clusters/cluster-01/environments/dev/overlays/kustomize-01"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
     targetRevision: HEAD
-    helm:
-      valueFiles:
-      - values_dev.yaml
-      parameters:
-      - name: "container.image"
-        value: docker.io/bokovets/kuber:v1.0
 
-  project: default
   syncPolicy:
     automated:
       prune   : true

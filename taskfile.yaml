@@ -1,9 +1,17 @@
 # yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
 version: '3'
+env:
+  DEV: clusters/cluster-01/environments/dev/root.yaml
+
 tasks:
   default: task -a
 
-  task:
+  apply-dev:
     desc: ''
     cmds:
-    - echo ''
+    - kubectl apply -f ${DEV}
+    
+  delete-dev:
+    desc: ''
+    cmds:
+    - kubectl delete -f ${DEV}

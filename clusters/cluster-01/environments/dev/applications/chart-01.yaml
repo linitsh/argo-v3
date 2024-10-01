@@ -1,26 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name     : myapp2
-  namespace: argocd
+  name      : dev-chart-01
+  namespace : argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  project    : default
   destination:
     name     : in-cluster
-    namespace: app2
+    namespace: &ns dev
   source:
-    path   : "HelmCharts/MyChart2"
-    repoURL: "https://github.com/linitsh/argo-adv-test.git"
+    path   : "apps/chart-01"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
     targetRevision: HEAD
     helm:
       valueFiles:
-      - values_dev.yaml
-      parameters:
-      - name: "container.image"
-        value: adv4000/app2:v2
+      - ../overlays/chart-01/values.yaml
 
-  project: default
   syncPolicy:
     automated:
       prune   : true

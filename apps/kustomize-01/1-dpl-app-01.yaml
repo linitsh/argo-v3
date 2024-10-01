@@ -1,0 +1,65 @@
+---
+_:
+- &name   app-01
+- &secret secret
+- &config config
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: *name
+spec:
+  replicas: 1
+  selector:
+  template:
+    spec:
+      containers:
+      - name: *name
+        imagePullPolicy: Always
+        image: nginx
+        resources:
+          limits:
+            cpu   : 100m
+            memory: 100Mi
+        env:
+        - name: &_env1 DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key : *_env1
+        - name: &_env2 ROUTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key : *_env2
+        - name: &_env3 FRUIT
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key : *_env3
+        - name: &_env4 VEGETABLE
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key : *_env4
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: *config
+          mountPath : /mnt/config/config.ini
+          subPath   : config.ini
+          readOnly  : true
+        - name: *secret
+          mountPath : /mnt/secret
+          readOnly  : true
+      volumes:
+      - name: *config
+        configMap:
+          name: *config
+          defaultMode: 420
+      - name: *secret
+        secret:
+          secretName: *secret
+          items:
+          - key : &_ls longsecret.txt
+            path: *_ls
