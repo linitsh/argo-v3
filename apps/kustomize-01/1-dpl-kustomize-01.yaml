@@ -1,13 +1,8 @@
 ---
-_:
-- &name   app-01
-- &secret secret
-- &config config
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: *name
+  name: &name dpl-kustomize-01
 spec:
   replicas: 1
   selector:
@@ -25,7 +20,7 @@ spec:
         - name: &_env1 DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: *secret
+              name: &secret secret
               key : *_env1
         - name: &_env2 ROUTER_PASSWORD
           valueFrom:
@@ -45,7 +40,7 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: *config
+        - name: &config config
           mountPath : /mnt/config/config.ini
           subPath   : config.ini
           readOnly  : true

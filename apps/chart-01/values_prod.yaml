@@ -1,6 +1,0 @@
-# Prod Override Values for my Helm Chart
-
-container:
-  image: docker.io/bokovets/kuber:v2.0
-
-replicaCount: 3

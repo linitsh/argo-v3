@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path   : "clusters/cluster-01/environments/dev/applications"
-    repoURL: "https://github.com/linitsh/argo-adv-test.git"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
     targetRevision: HEAD
   destination:
     name     : in-cluster

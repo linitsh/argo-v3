@@ -16,7 +16,7 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-      - ../overlays/chart-01/values.yaml
+      - ../../clusters/cluster-01/environments/dev/overlays/chart-01/values.yaml
 
   syncPolicy:
     automated:
