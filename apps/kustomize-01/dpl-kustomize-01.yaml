@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: d-kuber-app
+  name: &name dpl-kustomize-01
 
 spec:
   replicas: 1
@@ -15,15 +15,15 @@ spec:
 
   selector:
     matchLabels:
-      pod: po-kuber-app
+      pod: &container pod-kustomize-01
 
   template:
     metadata:
       labels:
-        pod: po-kuber-app
+        pod: *container
     spec:
       containers:
-      - name: kuber-app
+      - name: *name
         image: docker.io/bokovets/kuber:v1.0
         ports:
         - name: app-port
