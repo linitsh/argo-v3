@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d-kuber-app
+
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+
+  selector:
+    matchLabels:
+      pod: po-kuber-app
+
+  template:
+    metadata:
+      labels:
+        pod: po-kuber-app
+    spec:
+      containers:
+      - name: kuber-app
+        image: docker.io/bokovets/kuber:v1.0
+        ports:
+        - name: app-port
+          containerPort: 8000

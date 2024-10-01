@@ -1,0 +1,7 @@
+# Dev Override Values for my Helm Chart
+
+container:
+  image: docker.io/bokovets/kuber:v1.0
+
+replicaCount: 2
+
