@@ -10,6 +10,3 @@ includes:
     internal: false
 tasks:
   default: task -a
-  
-  cluster-*-*:
-  - task: 'cluster:run-{{ index .MATCH 0 }}-{{ index .MATCH 1 }}'
