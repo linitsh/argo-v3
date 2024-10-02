@@ -5,7 +5,7 @@ includes:
     taskfile: ../../../../../../minikube/taskfile.yaml
     internal: true
     vars:
-      PROFILE: cluster-01
+      PROFILE: cluster-02
 
 tasks:
   default: task -a
@@ -16,10 +16,7 @@ tasks:
   stop:
   - task: minikube:run:stop
 
-  test:
-  - task: minikube:run:test
-  
   delete:
   - task: minikube:run:delete
 
-  testy: echo {{ ._TT2 }}
+  

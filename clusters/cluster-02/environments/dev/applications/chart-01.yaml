@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name      : dev-chart-01
+  namespace : argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project    : default
+  destination:
+    name     : in-cluster
+    namespace: &ns dev
+  source:
+    path   : "apps/chart-01"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+      - ../../clusters/cluster-01/environments/dev/overlays/chart-01/values.yaml
+
+  syncPolicy:
+    automated:
+      prune   : true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true         
