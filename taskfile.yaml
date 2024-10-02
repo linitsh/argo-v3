@@ -2,17 +2,14 @@
 version: '3'
 
 includes:
-  cluster-01: clusters/cluster-01/bootstrap/taskfile.yaml
-  cluster-02: clusters/cluster-02/bootstrap/taskfile.yaml
-
+  cluster:
+    taskfile: control/tasks/cluster.yaml
+    internal: false
+  apps:
+    taskfile: control/tasks/root-apps.yaml
+    internal: false
 tasks:
   default: task -a
-  test:
-  - task: cluster-01:test
-
+  
   cluster-*-*:
-    vars:
-      NUM: '{{index .MATCH 0}}'
-      CMD: '{{index .MATCH 1}}'
-    cmds:
-    - task: 'cluster-{{ .NUM }}:{{ .CMD }}'
+  - task: 'cluster:run-{{ index .MATCH 0 }}-{{ index .MATCH 1 }}'

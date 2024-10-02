@@ -7,6 +7,8 @@ includes:
     vars:
       PROFILE: cluster-01
 
+  argocd: ../../../../../../argocd/taskfile.yaml
+
 tasks:
   default: task -a
 
@@ -22,4 +24,13 @@ tasks:
   delete:
   - task: minikube:run:delete
 
-  testy: echo {{ ._TT2 }}
+  argo_install:
+  - task: argocd:make:install
+  
+  argo_run:
+  - task: argocd:run:start
+
+  argo_password:
+  - task: argocd:make:initial-password-get
+
+  testy: echo worked in cluster 01

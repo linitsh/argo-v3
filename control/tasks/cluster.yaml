@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
+version: '3'
+includes:
+  cluster-01: 
+    taskfile: ../../clusters/cluster-01/bootstrap/taskfile.yaml
+    internal: true
+  cluster-02: 
+    taskfile: ../../clusters/cluster-02/bootstrap/taskfile.yaml
+    internal: true
+tasks:
+  default: task -a
+
+  run-*-*:
+    desc: manage clusters
+    vars:
+      NUM: '{{index .MATCH 0}}'
+      CMD: '{{index .MATCH 1}}'
+    cmds:
+    - task: 'cluster-{{ .NUM }}:{{ .CMD }}'
+
+  testy: echo worked in {{ .TASKFILE }}
