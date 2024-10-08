@@ -10,3 +10,6 @@ includes:
     internal: false
 tasks:
   default: task -a
+
+  start: 
+  - task: cluster:run-01-start
