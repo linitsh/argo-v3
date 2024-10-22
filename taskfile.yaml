@@ -13,3 +13,5 @@ tasks:
 
   start: 
   - task: cluster:run-01-start
+  stop: 
+  - task: cluster:run-01-stop
