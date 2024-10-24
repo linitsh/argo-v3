@@ -2,7 +2,7 @@
 version: '3'
 includes:
   minikube:
-    taskfile: ../../../../../../minikube/taskfile.yaml
+    taskfile: ../../../../../../clusters/minikube/taskfile.yaml
     internal: true
     vars:
       PROFILE: cluster-01
