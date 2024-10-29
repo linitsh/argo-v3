@@ -6,7 +6,7 @@ includes:
     internal: true
     vars:
       PROFILE: cluster-02
-      NODES: 3
+      NODES: 2
 
   argocd: ../../../../../../argocd/taskfile.yaml
 
