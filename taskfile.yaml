@@ -4,14 +4,14 @@ version: '3'
 includes:
   cluster:
     taskfile: control/tasks/cluster.yaml
-    internal: false
+    internal: true
   apps:
     taskfile: control/tasks/root-apps.yaml
-    internal: false
+    internal: true
 tasks:
-  default: task -a
-
-  start: 
-  - task: cluster:run-01-start
-  stop: 
-  - task: cluster:run-01-stop
+  start-*: 
+  - task: cluster:run-{{index .MATCH 0}}-start
+  stop-*: 
+  - task: cluster:run-{{index .MATCH 0}}-stop
+  delete-*: 
+  - task: cluster:run-{{index .MATCH 0}}-delete

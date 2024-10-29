@@ -6,6 +6,7 @@ includes:
     internal: true
     vars:
       PROFILE: cluster-01
+      NODES: 1
 
   argocd: ../../../../../../argocd/taskfile.yaml
 
@@ -32,5 +33,3 @@ tasks:
 
   argo_password:
   - task: argocd:make:initial-password-get
-
-  testy: echo worked in cluster 01

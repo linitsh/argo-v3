@@ -1,7 +1,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
 version: '3'
 tasks:
-  default: task -a
 
   run-*-*-*:
     desc: manage argocd root applications
@@ -11,6 +10,3 @@ tasks:
       ENV: '{{index .MATCH 2}}'
     cmds:
     - kubectl {{ .CMD }} -f clusters/cluster-{{ .NUM }}/environments/{{ .ENV }}/root.yaml
-
-
-  testy: echo worked in root-apps.yaml

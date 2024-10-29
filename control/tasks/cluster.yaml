@@ -8,7 +8,6 @@ includes:
     taskfile: ../../clusters/cluster-02/bootstrap/taskfile.yaml
     internal: true
 tasks:
-  default: task -a
 
   run-*-*:
     desc: manage clusters
@@ -17,5 +16,3 @@ tasks:
       CMD: '{{index .MATCH 1}}'
     cmds:
     - task: 'cluster-{{ .NUM }}:{{ .CMD }}'
-
-  testy: echo worked in {{ .TASKFILE }}
