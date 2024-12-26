@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
+version: '3'
+includes:
+  minikube:
+    taskfile: ../../../../../../clusters/minikube/taskfile.yaml
+    internal: true
+    vars:
+      PROFILE: cluster-03
+      NODES: 3
+
+  argocd: ../../../../../../argocd/taskfile.yaml
+
+tasks:
+
+  start:
+  - task: minikube:run:start
+
+  stop:
+  - task: minikube:run:stop
+
+  test:
+  - task: minikube:run:test
+  
+  delete:
+  - task: minikube:run:delete
+
+  argo_install:
+  - task: argocd:make:install
+  
+  argo_run:
+  - task: argocd:run:start
+
+  argo_password:
+  - task: argocd:make:initial-password-get

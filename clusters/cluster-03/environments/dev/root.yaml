@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name      : cluster-01-dev-root
+  namespace : argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path   : "clusters/cluster-01/environments/dev/applications"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
+    targetRevision: HEAD
+  destination:
+    name     : in-cluster
+    namespace: argocd
+  syncPolicy :
+    automated:
+      prune     : true
+      selfHeal  : true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+      - Validate=true
+      - PruneLast=true
+      - PrunePropagationPolicy=foreground

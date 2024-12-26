@@ -7,6 +7,9 @@ includes:
   cluster-02: 
     taskfile: ../../clusters/cluster-02/bootstrap/taskfile.yaml
     internal: true
+  cluster-03: 
+    taskfile: ../../clusters/cluster-03/bootstrap/taskfile.yaml
+    internal: true
 tasks:
 
   run-*-*:
