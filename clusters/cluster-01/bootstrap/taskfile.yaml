@@ -7,6 +7,8 @@ includes:
     vars:
       PROFILE: cluster-01
       NODES: 1
+      CPU: 4
+      MEM: 6144
 
   argocd: ../../../../../../argocd/taskfile.yaml
 
