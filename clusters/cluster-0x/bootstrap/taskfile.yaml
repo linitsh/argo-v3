@@ -5,8 +5,8 @@ includes:
     taskfile: ../../../../../../clusters/minikube/taskfile.yaml
     internal: true
     vars:
-      PROFILE: cluster-01
-      NODES: 1
+      PROFILE: cluster-0x
+      NODES: 3
       CPU  : 4
       MEM  : 6144
 

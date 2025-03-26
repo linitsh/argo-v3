@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name      : cluster-01-dev-kustomize-01
+  namespace : argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project    : default
+
+  destination:
+    name     : in-cluster
+    namespace: dev
+    
+  source:
+    path   : "clusters/cluster-01/environments/dev/overlays/kustomize-01"
+    repoURL: "https://github.com/linitsh/argo-v3.git"
+    targetRevision: HEAD
+
+  syncPolicy :
+    automated:
+      prune     : true
+      selfHeal  : true
+      allowEmpty: false
+    syncOptions :
+      - CreateNamespace=true
+      - Validate=true
+      - PruneLast=true
+      - PrunePropagationPolicy=foreground
