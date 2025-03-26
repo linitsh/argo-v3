@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/taskfile.json
 version: '3'
 includes:
+  cluster-0x: 
+    taskfile: ../../clusters/cluster-0x/bootstrap/taskfile.yaml
+    internal: true
   cluster-01: 
     taskfile: ../../clusters/cluster-01/bootstrap/taskfile.yaml
     internal: true

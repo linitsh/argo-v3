@@ -6,8 +6,8 @@ includes:
     internal: true
     vars:
       PROFILE: cluster-0x
-      NODES: 3
-      CPU  : 4
+      NODES: 1
+      CPU  : 6
       MEM  : 6144
 
   argocd: ../../../../../../argocd/taskfile.yaml
